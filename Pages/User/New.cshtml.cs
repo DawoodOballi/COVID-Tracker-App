@@ -28,7 +28,6 @@ namespace WebApplication1.Pages.User
             if (NewUser.Title == "Choose...")
             {
                 ModelState.AddModelError("Title", "Please select a Title");
-                return Page();
             }
             if (ModelState.IsValid)
             {

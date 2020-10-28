@@ -29,14 +29,6 @@
         </div>
         <div class="row justify-content-between">
             <div class="input-group col-sm-5 m-2">
-                <span asp-validation-for="NewUser.Title" class="text-danger"></span>
-            </div>
-            <div class="input-group col-sm-5 m-2">
-                <span asp-validation-for="NewUser.DOB" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="row justify-content-between">
-            <div class="input-group col-sm-5 m-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">First Name</span>
                 </div>
@@ -47,14 +39,6 @@
                     <span class="input-group-text">Last Name</span>
                 </div>
                 <input asp-for="NewUser.LastName" class="form-control" />
-            </div>
-        </div>
-        <div class="row justify-content-between">
-            <div class="input-group col-sm-5 m-2">
-                <span asp-validation-for="NewUser.LastName" class="text-danger"></span>
-            </div>
-            <div class="input-group col-sm-5 m-2">
-                <span asp-validation-for="NewUser.LastName" class="text-danger"></span>
             </div>
         </div>
         <button class="btn btn-primary m-2" type="submit">Submit</button>
