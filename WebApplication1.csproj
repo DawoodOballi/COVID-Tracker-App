@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\UserCheckIn\" />
     <Folder Include="Pages\Venue\" />
     <Folder Include="Pages\User\" />
   </ItemGroup>
