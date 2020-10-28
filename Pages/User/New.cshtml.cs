@@ -32,7 +32,7 @@ namespace WebApplication1.Pages.User
             if (ModelState.IsValid)
             {
                 await _uService.AddNewUserAsync(NewUser);
-                return new JsonResult(new { success = true });
+                return RedirectToPage("./Index");
             }
             return Page();
         }

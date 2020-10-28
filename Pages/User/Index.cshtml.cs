@@ -18,7 +18,7 @@ namespace WebApplication1.Pages.Users
             _context = context;
         }
 
-        public IList<User> Users { get; set; }
+        public IList<Models.User> Users { get; set; }
         
 
         public async Task OnGet()
