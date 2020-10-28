@@ -6,20 +6,31 @@
 }
 
 <h1 class="text-center text-capitalize">Users</h1>
+<div class="row justify-content-end">
+    <a asp-page="New" class="btn btn-primary mb-2">New</a>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(item => item.Users[0].Title)
+                <div>
+                    Title
+                </div>
             </th>
             <th>
-                @Html.DisplayNameFor(item => item.Users[0].FirstName)
+                <div>
+                    First Name
+                </div>
             </th>
             <th>
-                @Html.DisplayNameFor(item => item.Users[0].LastName)
+                <div>
+                    Last Name
+                </div>
             </th>
             <th>
-                @Html.DisplayNameFor(item => item.Users[0].DOB)
+                <div>
+                    DOB
+                </div>
             </th>
             <th></th>
         </tr>
@@ -27,20 +38,28 @@
     <tbody>
         @foreach (var item in Model.Users)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(m => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.DOB.Date)
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    <div>
+                        @item.Title
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @item.FirstName
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @item.LastName
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @item.DOB.ToShortDateString()
+                    </div>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
