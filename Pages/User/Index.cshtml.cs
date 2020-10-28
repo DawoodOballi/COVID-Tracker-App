@@ -5,20 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Models;
 
-namespace WebApplication1.Pages.Users
+namespace WebApplication1.Pages.User
 {
     public class IndexModel : PageModel
     {
-        private readonly CovidTrackerContext _context;
+        private readonly Models.CovidTrackerContext _context;
 
-        public IndexModel(CovidTrackerContext context)
+        public IndexModel(Models.CovidTrackerContext context)
         {
             _context = context;
         }
 
-        public IList<User> Users { get; set; }
+        public IList<Models.User> Users { get; set; }
         
 
         public async Task OnGet()
