@@ -32,7 +32,11 @@
                     DOB
                 </div>
             </th>
-            <th></th>
+            <th>
+                <div>
+                    Actions
+                </div>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -58,6 +62,9 @@
                     <div>
                         @item.DOB.ToShortDateString()
                     </div>
+                </td>
+                <td>
+                    <a asp-page="Details" asp-route-id="@item.UserID">Details</a>
                 </td>
             </tr>
         }

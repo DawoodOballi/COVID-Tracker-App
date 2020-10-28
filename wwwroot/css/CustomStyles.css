@@ -1,0 +1,13 @@
+﻿ul.Details{
+    list-style-type: none;
+    padding-left: 0;
+}
+.Details li{
+    font-size: 20pt;
+}
+span.card-title{
+    font-weight: bold;
+}
+hr.solid{
+    border-top: 3px solid #000000
+}
