@@ -1,0 +1,38 @@
+﻿@page
+@model WebApplication1.Pages.Venue.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Are you sure you want to remove this venue from the Tracker?</h3>
+<div>
+    <h4>Venue</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Venue.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Venue.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Venue.PostCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Venue.PostCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Venue.ContactNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Venue.ContactNumber)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Venue.VenueID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
