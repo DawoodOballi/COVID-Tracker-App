@@ -1,0 +1,46 @@
+﻿@page
+@model WebApplication1.Pages.Users.IndexModel
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1 class="text-center text-capitalize">Users</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(item => item.Users[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(item => item.Users[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(item => item.Users[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(item => item.Users[0].DOB)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Users)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.DOB.Date)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
