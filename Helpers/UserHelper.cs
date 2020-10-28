@@ -13,17 +13,21 @@ namespace WebApplication1.Helpers
     public class UserHelper
     {
         CovidTrackerContext _db;
-        UserHelper userHelper;
 
         public UserHelper(CovidTrackerContext db)
         {
             _db = db;
         }
 
+        public Models.User GetUserFromID(int id)
+        {
+            return _db.Users.Where(x => x.UserID == id).Include(x => x.CheckIns).FirstOrDefault();
+        }
+
         public bool IsUserCheckedIn(int SelectedUserId)
         {
-            var selectedUserWithCheckin = _db.Users.Where(x => x.UserID == SelectedUserId).Include(x => x.CheckIns).ToString();
-            if (selectedUserWithCheckin != null)
+            var selectedUserWithCheckin = _db.Users.Include(x => x.CheckIns).Where(x => x.UserID == SelectedUserId).FirstOrDefault();
+            if (selectedUserWithCheckin.CheckIns.Where(x => x.CheckedOutAt == null).Count() > 0)
             {
                 return true;
             }
@@ -38,24 +42,15 @@ namespace WebApplication1.Helpers
                     UserID = SelectedUserId,
                     CheckedInAt = DateTime.Now,
                     VenueID = SelectedVenueId
-                }
-                );
+                });
             _db.SaveChanges();
         }
 
-        public void CheckUserOut(int SelectedUserId, int SelectedVenueId)
+        public void CheckUserOut(int SelectedUserId)
         {
-            _db.UserCheckIns.Update(
-                    new UserCheckin
-                    {
-                        UserID = SelectedUserId,
-                        CheckedOutAt = DateTime.Now,
-                        VenueID = SelectedVenueId
-                    }
-                    );
+            var allCheckIns = _db.UserCheckIns.Where(x => x.UserID == SelectedUserId).Where(x => x.CheckedOutAt == null).FirstOrDefault();
+            allCheckIns.CheckedOutAt = DateTime.Now;
             _db.SaveChanges();
-
         }
-
     }
 }
