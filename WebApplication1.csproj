@@ -11,6 +11,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <Folder Include="Pages\Venue\" />
+    <Folder Include="Pages\User\" />
   </ItemGroup>
 
 </Project>
