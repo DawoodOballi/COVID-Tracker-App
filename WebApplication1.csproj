@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Users\**" />
+    <Content Remove="Pages\Users\**" />
+    <EmbeddedResource Remove="Pages\Users\**" />
+    <None Remove="Pages\Users\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="appsettings.json" />
   </ItemGroup>
 
