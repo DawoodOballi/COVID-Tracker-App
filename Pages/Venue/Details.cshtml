@@ -5,66 +5,119 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Venue Details</h1>
+<h1 class="col-md-5">Venue Details</h1>
 
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Venue.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Venue.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Venue.Capacity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Venue.Capacity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Venue.Add1)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Venue.Add1)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Venue.Add2)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Venue.Add2)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Venue.City)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Venue.City)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Venue.Town)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Venue.Town)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Venue.County)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Venue.County)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Venue.PostCode)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Venue.PostCode)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Venue.ContactNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Venue.ContactNumber)
-        </dd>
-    </dl>
+<div class="row">
+    <div class="col-md-5">
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Venue.Name)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Venue.Name)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Venue.Capacity)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Venue.Capacity)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Venue.Add1)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Venue.Add1)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Venue.Add2)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Venue.Add2)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Venue.City)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Venue.City)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Venue.Town)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Venue.Town)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Venue.County)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Venue.County)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Venue.PostCode)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Venue.PostCode)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Venue.ContactNumber)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Venue.ContactNumber)
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Users[0].User.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Users[0].UserID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Users[0].User.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Users[0].User.LastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Users[0].CheckedInAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Users[0].CheckedOutAt)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach (var user in Model.Users)
+                    {
+                        <td>
+                            @Html.DisplayFor(item => user.User.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(item => user.UserID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(item => user.User.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(item => user.User.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(item => user.CheckedInAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(item => user.CheckedOutAt)
+                        </td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Venue.VenueID">Edit</a> |
