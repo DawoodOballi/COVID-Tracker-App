@@ -1,0 +1,58 @@
+﻿@page "{searchString?}"
+@model WebApplication1.Pages.UserCheckin.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>List of all check ins</h1>
+
+<form method="get">
+    <p>
+        <select asp-for="UserName" asp-items="Model.Users">
+            <option value="">All</option>
+        </select>
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserCheckin[0].CheckedInAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserCheckin[0].CheckedOutAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserCheckin[0].User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserCheckin[0].Venue)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.UserCheckin)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckedInAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckedOutAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Venue.Add1)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
