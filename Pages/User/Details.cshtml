@@ -1,0 +1,103 @@
+﻿@page "{id}"
+@model WebApplication1.Pages.User.DetailsModel
+@{
+    Layout = "_Layout";
+}
+<body>
+    <h1>@Model.Username</h1>
+    <hr class="row"/>
+    @Html.ValidationSummary(false, "", new { @class = "text-danger"})
+    <div class="row justify-content-between">
+        <div class="card col-sm-5">
+            <div class="card-body">
+                <ul class="Details">
+                    <li>
+                        <span class="card-title">Title:</span>
+                        <span class="card-text">@Model.CurrentUser.Title</span>
+                    </li>
+                    <li>
+                        <span class="card-title">First Name:</span>
+                        <span class="card-text">@Model.CurrentUser.FirstName</span>
+                    </li>
+                    <li>
+                        <span class="card-title">Last Name:</span>
+                        <span class="card-text">@Model.CurrentUser.LastName</span>
+                    </li>
+                    <li>
+                        <span class="card-title">DOB:</span>
+                        <span class="card-text">@Model.CurrentUser.DOB.ToShortDateString()</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        @if (Model.IsCheckedIn)
+        {
+            <div class="card col-sm-5">
+                <div class="card-body">
+                    <ul class="Details">
+                        <li>
+                            <span class="card-title">Name:</span>
+                            <span class="card-text">@Model.CurrentVenue.Name</span>
+                        </li>
+                        <li>
+                            <span class="card-title">Capacity:</span>
+                            <span class="card-text">@Model.CurrentVenue.Capacity</span>
+                        </li>
+                        <li>
+                            <span class="card-title">Address 1:</span>
+                            <span class="card-text">@Model.CurrentVenue.Add1</span>
+                        </li>
+                        <li>
+                            <span class="card-title">Address 2:</span>
+                            <span class="card-text">@Model.CurrentVenue.Add2</span>
+                        </li>
+                        <li>
+                            <span class="card-title">City:</span>
+                            <span class="card-text">@Model.CurrentVenue.City</span>
+                        </li>
+                        @if (!string.IsNullOrEmpty(Model.CurrentVenue.Town))
+                        {
+                            <li>
+                                <span class="card-title">Town:</span>
+                                <span class="card-text">@Model.CurrentVenue.Town</span>
+                            </li>
+                        }
+                        <li>
+                            <span class="card-title">County:</span>
+                            <span class="card-text">@Model.CurrentVenue.County</span>
+                        </li>
+                        <li>
+                            <span class="card-title">Post Code:</span>
+                            <span class="card-text">@Model.CurrentVenue.PostCode</span>
+                        </li>
+                        <li>
+                            <span class="card-title">Phone:</span>
+                            <span class="card-text">@Model.CurrentVenue.ContactNumber</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <form method="post" autocomplete="off" asp-route-id="@Model.CurrentUser.UserID", asp-route-checkout="true">
+                    <div class="text-right pb-2">
+                        <button type="submit" class="btn btn-danger">Check out</button>
+                    </div>
+                </form>
+            </div>
+        }
+        else
+        {
+            <div class="col-sm-5">
+                <form method="post" autocomplete="off" asp-route-id="@Model.CurrentUser.UserID">
+                    <select class="form-control" asp-for="SelectedVenueID">
+                        <option selected value="0">Choose...</option>
+                        @foreach(var venu in Model.Venues)
+                        {
+                            <option value="@venu.VenueID">@venu.Name</option>
+                        }
+                    </select>
+                    <button type="submit" class="btn-primary btn mt-2">Check in</button>
+                </form>
+            </div>
+        }
+    </div>
+</body>

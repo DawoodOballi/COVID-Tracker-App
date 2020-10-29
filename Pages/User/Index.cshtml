@@ -1,0 +1,74 @@
+﻿@page
+@model WebApplication1.Pages.User.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center text-capitalize">Users</h1>
+<div class="row justify-content-end">
+    <a asp-page="New" class="m-2 mr-3">
+        <i class="fa fa-plus"></i>
+    </a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <div>
+                    Title
+                </div>
+            </th>
+            <th>
+                <div>
+                    First Name
+                </div>
+            </th>
+            <th>
+                <div>
+                    Last Name
+                </div>
+            </th>
+            <th>
+                <div>
+                    DOB
+                </div>
+            </th>
+            <th>
+                <div>
+                    Actions
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>
+                    <div>
+                        @item.Title
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @item.FirstName
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @item.LastName
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @item.DOB.ToShortDateString()
+                    </div>
+                </td>
+                <td>
+                    <a asp-page="Details" asp-route-id="@item.UserID">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,46 @@
+﻿@page   
+@model WebApplication1.Pages.User.NewModel
+@{
+}
+<body>
+    <h1>New User</h1>
+    @Html.ValidationSummary(false, "", new { @class = "text-danger"})
+    <form method="post" autocomplete="off">
+        <div class="row justify-content-between">
+            <div class="input-group col-sm-5 m-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Title</span>
+                </div>
+                <select class="custom-select" asp-for="NewUser.Title">
+                    <option selected>Choose...</option>
+                    <option value="Mr">Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Miss">Miss</option>
+                    <option value="Dr">Dr</option>
+                    <option value="Mx">Mx</option>
+                </select>
+            </div>
+            <div class="input-group col-sm-5 m-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">DOB</span>
+                </div>
+                <input asp-for="NewUser.DOB" class="form-control" type="date"/>
+            </div>
+        </div>
+        <div class="row justify-content-between">
+            <div class="input-group col-sm-5 m-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">First Name</span>
+                </div>
+                <input asp-for="NewUser.FirstName" class="form-control" />
+            </div>
+            <div class="input-group col-sm-5 m-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Last Name</span>
+                </div>
+                <input asp-for="NewUser.LastName" class="form-control" />
+            </div>
+        </div>
+        <button class="btn btn-primary m-2" type="submit">Submit</button>
+    </form>
+</body>
