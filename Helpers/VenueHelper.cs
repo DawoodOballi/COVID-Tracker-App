@@ -16,6 +16,11 @@ namespace WebApplication1.Helpers
             _db = context;
         }
 
+        public IList<Venue> GetAllVenues()
+        {
+            return _db.Venues.ToList();
+        }
+
         public IList<UserCheckin> GetUsersCheckedIn(int id)
         {
             var getUsersCheckedIn = _db.UserCheckIns.Include(u => u.User)
@@ -32,6 +37,11 @@ namespace WebApplication1.Helpers
                 .Where(u => u.CheckedOutAt != null);
 
             return getUsersCheckedOut.ToList();
+        }
+
+        public Venue GetCurrentVenueForUser(int id)
+        {
+            return _db.UserCheckIns.Include(x => x.Venue).Where(x => x.UserID == id && x.CheckedOutAt == null).Select(x => x.Venue).FirstOrDefault();
         }
     }
 }
