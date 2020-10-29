@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore.Internal;
 using WebApplication1.Helpers;
 using WebApplication1.Models;
+using WebApplication1.ServiceUtils;
 
 namespace WebApplication1.Pages.User
 {
@@ -23,7 +24,7 @@ namespace WebApplication1.Pages.User
         public int SelectedVenueID { get; set; }
         public DetailsModel(CovidTrackerContext db)
         {
-            _uHelper = new UserHelper(db);
+            _uHelper = new UserHelper(new UserService(db));
             _vHelper = new VenueHelper(db);
         }
 

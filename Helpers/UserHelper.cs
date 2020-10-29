@@ -7,50 +7,46 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using WebApplication1.Models;
+using WebApplication1.ServiceUtils;
+using WebApplication1.ServiceUtils.Interfaces;
 
 namespace WebApplication1.Helpers
 {
     public class UserHelper
     {
-        CovidTrackerContext _db;
+        IUserService _uService;
 
-        public UserHelper(CovidTrackerContext db)
+        public UserHelper(IUserService service)
         {
-            _db = db;
+            _uService = service;
         }
 
         public Models.User GetUserFromID(int id)
         {
-            return _db.Users.Where(x => x.UserID == id).Include(x => x.CheckIns).FirstOrDefault();
+            return _uService.GetUserByID(id);
         }
 
         public bool IsUserCheckedIn(int SelectedUserId)
         {
-            var selectedUserWithCheckin = _db.Users.Include(x => x.CheckIns).Where(x => x.UserID == SelectedUserId).FirstOrDefault();
-            if (selectedUserWithCheckin.CheckIns.Where(x => x.CheckedOutAt == null).Count() > 0)
-            {
-                return true;
-            }
-            else return false;
+            var user = _uService.GetUserByID(SelectedUserId);
+            return user.CheckIns.Where(x => x.CheckedOutAt == null).Count() > 0;
         }
 
         public void CheckUserIn(int SelectedUserId, int SelectedVenueId)
         {
-            _db.UserCheckIns.Add(
-                new UserCheckin
-                {
-                    UserID = SelectedUserId,
-                    CheckedInAt = DateTime.Now,
-                    VenueID = SelectedVenueId
-                });
-            _db.SaveChanges();
+
+            _uService.AddUserCheckin(new UserCheckin
+            {
+                UserID = SelectedUserId,
+                CheckedInAt = DateTime.Now,
+                VenueID = SelectedVenueId
+            });
         }
 
         public void CheckUserOut(int SelectedUserId)
         {
-            var allCheckIns = _db.UserCheckIns.Where(x => x.UserID == SelectedUserId).Where(x => x.CheckedOutAt == null).FirstOrDefault();
-            allCheckIns.CheckedOutAt = DateTime.Now;
-            _db.SaveChanges();
+            var userCheckin = _uService.GetUserByID(SelectedUserId).CheckIns.Where(x => x.CheckedOutAt == null).FirstOrDefault();
+            _uService.CheckOut(userCheckin.UserCheckinID, DateTime.Now);
         }
     }
 }
