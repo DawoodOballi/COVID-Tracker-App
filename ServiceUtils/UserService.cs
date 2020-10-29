@@ -41,5 +41,10 @@ namespace WebApplication1.ServiceUtils
             record.CheckedOutAt = checkoutTime;
             _db.SaveChanges();
         }
+
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        {
+            return await _db.Users.Include(x => x.CheckIns).ToListAsync();
+        }
     }
 }

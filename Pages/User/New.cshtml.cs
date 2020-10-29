@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebApplication1.Helpers;
 using WebApplication1.Models;
 using WebApplication1.ServiceUtils;
 
@@ -11,13 +12,13 @@ namespace WebApplication1.Pages.User
 {
     public class NewModel : PageModel
     {
-        UserService _uService;
+        UserHelper _uHelper;
 
         [BindProperty]
         public Models.User NewUser { get; set; }
         public NewModel(CovidTrackerContext db)
         {
-            _uService = new UserService(db);
+            _uHelper = new UserHelper(new UserService(db));
         }
         public void OnGet()
         {
@@ -31,7 +32,7 @@ namespace WebApplication1.Pages.User
             }
             if (ModelState.IsValid)
             {
-                await _uService.AddNewUserAsync(NewUser);
+                await _uHelper.AddNewUserAsync(NewUser);
                 return RedirectToPage("./Index");
             }
             return Page();
