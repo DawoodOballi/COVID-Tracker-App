@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Exchange.WebServices.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using WebApplication1.Models;
 using WebApplication1.ServiceUtils;
@@ -47,6 +45,16 @@ namespace WebApplication1.Helpers
         {
             var userCheckin = _uService.GetUserByID(SelectedUserId).CheckIns.Where(x => x.CheckedOutAt == null).FirstOrDefault();
             _uService.CheckOut(userCheckin.UserCheckinID, DateTime.Now);
+        }
+
+        public async Task AddNewUserAsync(User user)
+        {
+            await _uService.AddNewUserAsync(user);
+        }
+
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        {
+            return await _uService.GetAllUsersAsync();
         }
     }
 }

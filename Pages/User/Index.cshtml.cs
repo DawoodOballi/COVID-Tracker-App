@@ -5,16 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using WebApplication1.Helpers;
+using WebApplication1.ServiceUtils;
 
 namespace WebApplication1.Pages.User
 {
     public class IndexModel : PageModel
     {
-        private readonly Models.CovidTrackerContext _context;
+        UserHelper _uHelper;
 
         public IndexModel(Models.CovidTrackerContext context)
         {
-            _context = context;
+            _uHelper = new UserHelper(new UserService(context));
         }
 
         public IList<Models.User> Users { get; set; }
@@ -22,9 +24,8 @@ namespace WebApplication1.Pages.User
 
         public async Task OnGet()
         {
-            var users = from u in _context.Users
-                        select u;
-            Users = await users.ToListAsync();
+            var users = await _uHelper.GetAllUsersAsync();
+            Users = users.ToList();
         }
     }
 }
